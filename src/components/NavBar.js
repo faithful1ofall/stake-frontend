@@ -17,16 +17,18 @@ export default function NavBar() {
         <>
             <div className="minimalistic-nav-bar">
                 <div>
+                <a  href="https://miniutopia.co" >
                 <img
                     alt=""
                     src={require('../logo.png')}
-                    width="300px"
-                    height="27px"
+                    width="180px"
+                    height="47px"
                     className="d-inline-block align-top"
                 />
+                </a>
                 </div>
                 <div>
-                STAKE
+                STAKING AND EARNING
                 </div>
                 <div>
                 {web3? <AddressView />: 'Not connected'}

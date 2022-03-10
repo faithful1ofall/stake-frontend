@@ -79,7 +79,7 @@
   "sourceMap": "247:532:12:-:0;;;331:49;;;;;;;;;;363:10;355:5;;:18;;;;;;;;;;;;;;;;;;247:532;;;;;;",
   "deployedSourceMap": "247:532:12:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;386:285;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;275:22;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;304:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;677:100;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;386:285;470:29;530:4;;536:6;;502:41;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;470:73;;553:5;:15;;;569:5;:17;;;:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;590:5;;;;;;;;;;;553:43;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;606:5;:10;;;617:5;;;;;;;;;;;624:11;606:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;646:6;658:5;646:18;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;386:285;;;;;:::o;275:22::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;304:20::-;;;;;;;;;;;;;:::o;677:100::-;719:23;764:6;754:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;677:100;:::o;-1:-1:-1:-;;;;;;;;:::o",
   "source": "// // SPDX-License-Identifier: UNLICENSED\n\npragma solidity 0.7.6;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"@openzeppelin/contracts/presets/ERC20PresetMinterPauser.sol\";\n\ncontract ERC20Factory {\n    IERC20[] public tokens;\n\n    address public owner;\n\n    constructor() {\n        owner = msg.sender;\n    }\n\n    function createToken(string calldata name, string calldata symbol) public {\n        ERC20PresetMinterPauser token = new ERC20PresetMinterPauser(name, symbol);\n        token.grantRole(token.MINTER_ROLE(), owner);\n        token.mint(owner, 10000 ether);\n        tokens.push(token);\n    }\n\n    function getTokens() public view returns (IERC20[] memory _tokens) {\n        _tokens = tokens;\n    }\n}",
-  "sourcePath": "/workspace/eatthestake/contracts/ERC20Factory.sol",
+  "sourcePath": "/workspace/STAKE-CONTRACTS/contracts/ERC20Factory.sol",
   "ast": {
     "absolutePath": "project:/contracts/ERC20Factory.sol",
     "exportedSymbols": {
@@ -1899,7 +1899,7 @@
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-03-09T14:15:51.592Z",
+  "updatedAt": "2022-03-10T04:28:35.456Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
