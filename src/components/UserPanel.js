@@ -162,7 +162,7 @@ export default function UserPanel() {
         <>
         <div className="two-line-label">
             <div>Staking reward period finished</div>
-            <div>Please check back later for the next phase</div>
+            <div>Please stake back later for the next phase starting 1st of may higher rewards upto 3000% APY</div>
         </div><hr/>
         </>
     );
@@ -227,7 +227,7 @@ export default function UserPanel() {
                 <div className="two-line-label">
             <div>Stake MUT Earn MUT</div>
             </div>
-            <CardKeyValue label="Estimated Apr in %"  value={  150.23+"%"} ></CardKeyValue> 
+            <CardKeyValue label="Estimated Apr in %"  value={  450.23+"%"} ></CardKeyValue> 
                 {isNonZeroNumber(userDetails["rewardPerDay"])? <RewardsPhaseActive /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="label-above-button">
@@ -276,7 +276,7 @@ export default function UserPanel() {
                 <div className="two-line-label">
             <div>Stake MUT-CET LP Earn MUT</div>
             </div>
-            <CardKeyValue label="Estimated Apr in %"  value={  80.23+"%"} ></CardKeyValue> 
+            <CardKeyValue label="Estimated Apr in %"  value={  1200.63+"%"} ></CardKeyValue> 
                 {isNonZeroNumber(userDetails1["rewardPerDay1"])? <RewardsPhaseActive1 /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="label-above-button">
@@ -300,13 +300,13 @@ export default function UserPanel() {
                 </div>
                 <div className="input-button-container">
                     <div>
-                        <Form.Control disabled placeholder="Amount" value={inputUnstake1} onChange={(e) => {onInputNumberChange(e, setInputUnstake1)}}/>
+                        <Form.Control disable placeholder="Amount" value={inputUnstake1} onChange={(e) => {onInputNumberChange(e, setInputUnstake1)}}/>
                     </div>
                     <div>
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails1["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button" disabled onClick={withdraw1} >Unstake</Button>
+                            <Button type="button" disabled  onClick={withdraw1} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
@@ -317,6 +317,52 @@ export default function UserPanel() {
                 </div>
                 <div className="button-stretch">
                     <br/><Button type="button" onClick={addTokenFunction} >Add MUT to Metamask</Button><br/>
+                </div>
+                <br/>
+                </Container>
+                <Container className="square inner-container" >
+                <br/>
+                <div className="two-line-label">
+            <div>Stake MUT Earn FRG (coming soon)</div>
+            </div>
+            <CardKeyValue label="Estimated Apr in %"  value={  3000 +"%"} ></CardKeyValue> 
+                {isNonZeroNumber(userDetails["rewardPerDay"])? <RewardsPhaseActive /> : <RewardsPhaseFinished/>}
+                <br/><br/>
+                <div className="label-above-button">
+                    Available {userDetails["depSymbol"]} balance to stake: {userDetails["depositTokenBalance"]}
+                </div>
+                <div className="input-button-container">
+                    <div>
+                        <Form.Control disabled placeholder="Amount" value={inputStake} onChange={(e) => {onInputNumberChange(e, setInputStake)}}/>
+                    </div>
+                    <div>
+                        <OverlayTrigger
+                        placement="right"
+                        overlay={userDetails["pending"] > 0 ? <Tooltip >The Actual APR will be varied with the TVL and the time to staking</Tooltip> : <></>}>
+                            <Button disabled onClick={deposit} >Stake</Button>
+                        </OverlayTrigger>
+                    </div>
+                </div><br/>
+
+                <div className="label-above-button">
+                    {userDetails["depSymbol"]} staked: {userDetails["deposited"]}
+                </div>
+                <div className="input-button-container">
+                    <div>
+                        <Form.Control disabled placeholder="Amount" value={inputUnstake} onChange={(e) => {onInputNumberChange(e, setInputUnstake)}}/>
+                    </div>
+                    <div>
+                        <OverlayTrigger
+                        placement="right"
+                        overlay={userDetails["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
+                            <Button type="button" disabled onClick={withdraw} >Unstake</Button>
+                        </OverlayTrigger>
+                    </div>
+                </div><br/>
+
+               
+                <div className="button-stretch">
+                    <Button type="button" disabled onClick={claim} >Claim rewards</Button>
                 </div>
                 <br/>
                 </Container>
