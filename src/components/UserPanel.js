@@ -300,7 +300,7 @@ export default function UserPanel() {
                 </div>
                 <div className="input-button-container">
                     <div>
-                        <Form.Control disable placeholder="Amount" value={inputUnstake1} onChange={(e) => {onInputNumberChange(e, setInputUnstake1)}}/>
+                        <Form.Control disabled placeholder="Amount" value={inputUnstake1} onChange={(e) => {onInputNumberChange(e, setInputUnstake1)}}/>
                     </div>
                     <div>
                         <OverlayTrigger
