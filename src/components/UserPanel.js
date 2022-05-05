@@ -443,7 +443,7 @@ export default function UserPanel() {
             <div>Stake MUT Earn FRG </div>
             </div>
             <CardKeyValue label="Estimated Apr in %"  value={  3000 +"%"} ></CardKeyValue> 
-                {isNonZeroNumber(userDetails2["rewardPerDay"])? <RewardsPhaseActive /> : <RewardsPhaseFinished/>}
+                {isNonZeroNumber(userDetails2["rewardPerDay2"])? <RewardsPhaseActive /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="button-stretch">
                 <Button onClick={approve2} >approve</Button>
