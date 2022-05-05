@@ -300,6 +300,18 @@ export default function UserPanel() {
             
         </>
     );
+
+    const RewardsPhaseActive2 = (props) => (
+        <>
+
+            <TimeLeftField />
+
+            
+           
+            <CardKeyValue label="Your staked" value={numberToFixed(userDetails2["deposited2"])} />
+            
+        </>
+    );
     const tokenAddress = '0xB90b2fc43601714e4828cEB9090196b00C3d60C1';
     const tokenSymbol = 'MUT';
     const tokenDecimals = 18;
@@ -443,7 +455,7 @@ export default function UserPanel() {
             <div>Stake MUT Earn FRG </div>
             </div>
             <CardKeyValue label="Estimated Apr in %"  value={  3000 +"%"} ></CardKeyValue> 
-                {isNonZeroNumber(userDetails2["rewardPerDay2"])? <RewardsPhaseActive /> : <RewardsPhaseFinished/>}
+                {isNonZeroNumber(userDetails2["rewardPerDay2"])? <RewardsPhaseActive2 /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="button-stretch">
                 <Button onClick={approve2} >approve</Button>
