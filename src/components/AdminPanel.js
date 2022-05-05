@@ -75,7 +75,7 @@ export default function AdminPanel() {
         await refreshUserDetails();
     }
         async function addRewards2() {
-            if (userDetails2["daysLeft1"] !== 0.) {
+            if (userDetails2["daysLeft2"] !== 0.) {
                 toast.info("Can't add rewards in middle of campaign. Please wait for campaign to finish.");
                 return;
             }
@@ -83,7 +83,7 @@ export default function AdminPanel() {
                 toast.info('Please add missing input.');
                 return;
             }
-            if (parseFloat(inputAdminRewards) > parseFloat(userDetails2["rewardTokenBalance"])) {
+            if (parseFloat(inputAdminRewards) > parseFloat(userDetails2["rewardTokenBalance2"])) {
                 toast.error("Not enough balance.");
                 return;
             }
