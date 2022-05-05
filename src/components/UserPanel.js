@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Row } from "react-bootstrap";
 
 
 
@@ -213,7 +214,7 @@ export default function UserPanel() {
             toast.error('No amount entered.');
             return;
         }
-        if (parseFloat(inputStake1) > parseFloat(userDetails1["depositTokenBalance"])) {
+        if (parseFloat(inputStake1) > parseFloat(userDetails1["depositTokenBalance1"])) {
             console.log(typeof inputStake1);
             toast.error("Not enough balance.");
             return;
@@ -233,7 +234,7 @@ export default function UserPanel() {
             toast.error('No amount entered.');
             return;
         }
-        if (parseFloat(inputStake2) > parseFloat(userDetails2["depositTokenBalance"])) {
+        if (parseFloat(inputStake2) > parseFloat(userDetails2["depositTokenBalance2"])) {
             console.log(typeof inputStake2);
             toast.error("Not enough balance.");
             return;
@@ -248,6 +249,11 @@ export default function UserPanel() {
         }
     }
 
+    async function getvalue() {
+
+        const setInputvalue = userDetails["depositTokenBalance"]
+        
+    }
 
     function numberToFixed(n) {
         if (n === undefined)
@@ -345,7 +351,9 @@ export default function UserPanel() {
     }
     return (
         <>
-            <Container className="square inner-container" >
+            <Container fluid className="square inner-container">
+                <Row>
+                <Container className="square inner-container">
                 <br/>
                 <div className="two-line-label">
             <div>Stake MUT Earn MUT</div>
@@ -356,7 +364,7 @@ export default function UserPanel() {
                 <div className="button-stretch">
                 <Button onClick={approve} >approve</Button>
                 </div>
-                <div className="label-above-button">
+                <div className="label-above-button" on click={getvalue}>
                     Available {userDetails["depSymbol"]} balance to stake: {userDetails["depositTokenBalance"]}
                 </div>
                 <div className="input-button-container">
@@ -392,12 +400,11 @@ export default function UserPanel() {
                 <div className="button-stretch">
                     <Button type="button" disabled onClick={claim} >Claim rewards</Button>
                 </div>
-                <br/>
-                </Container>
+                <br/></Container> 
+                </Row>
 
-
-
-                <Container className="square inner-container" >
+                <Row >
+                <Container className="square inner-container">
                 <br/>
                 <div className="two-line-label">
             <div>Stake MUT-CET LP Earn MUT</div>
@@ -447,9 +454,10 @@ export default function UserPanel() {
                 <div className="button-stretch">
                     <br/><Button type="button" onClick={addTokenFunction} >Add MUT to Metamask</Button><br/>
                 </div>
-                <br/>
-                </Container>
-                <Container className="square inner-container" >
+                <br/></Container> 
+                </Row>
+
+                <Row> <Container  className="square inner-container" >
                 <br/>
                 <div className="two-line-label">
             <div>Stake MUT Earn FRG </div>
@@ -497,7 +505,14 @@ export default function UserPanel() {
                     <Button type="button" disabled onClick={claim2} >Claim rewards</Button>
                 </div>
                 <br/>
+                </Container></Row>
                 </Container>
+
+                <br/><br/>
+
+                
+
+               
         </>
     )
 }

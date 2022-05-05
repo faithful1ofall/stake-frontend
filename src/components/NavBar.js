@@ -26,15 +26,38 @@ export default function NavBar() {
                     className="d-inline-block align-top"
                 />
                 </a>
+            
+                
+                
                 </div>
+
+                
                 <div>
-                STAKING AND EARNING
-                </div>
-                <div>
+                
                 {web3? <AddressView />: 'Not connected'}
                 
                 </div>
             </div>
+            
+        <div className="minimalistic-nav-bar" >  
+        
+        <div>
+                
+            
+                
+        </div>
+        <br></br>
+        <div >
+                
+            STAKING AND EARNING
+                
+        </div>
+        <div>
+          
+        </div>
+        
+        </div>
+
         </>
     )
 }
