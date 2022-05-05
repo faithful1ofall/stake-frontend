@@ -12,8 +12,8 @@ import Container from 'react-bootstrap/Container';
 export default function AdminPanel() {
     const blockchainContext = useContext(BlockchainContext);
     const displayContext = useContext(DisplayContext);
-    const { web3, accounts, stakerContract, rewardTokenContract, stakerContract1, rewardTokenContract1  } = blockchainContext;
-    const {userDetails, userDetails1, refreshUserDetails, onInputNumberChange, isNonZeroNumber, toast} = displayContext;
+    const { web3, accounts, stakerContract, rewardTokenContract, stakerContract1, rewardTokenContract1,stakerContract2, rewardTokenContract2  } = blockchainContext;
+    const {userDetails, userDetails1, userDetails2, refreshUserDetails, onInputNumberChange, isNonZeroNumber, toast} = displayContext;
 
     const [inputAdminRewards, setInputAdminRewards] = useState('');
     const [inputAdminDuration, setInputAdminDuration] = useState('');
@@ -74,6 +74,34 @@ export default function AdminPanel() {
         
         await refreshUserDetails();
     }
+        async function addRewards2() {
+            if (userDetails2["daysLeft1"] !== 0.) {
+                toast.info("Can't add rewards in middle of campaign. Please wait for campaign to finish.");
+                return;
+            }
+            if (!(isNonZeroNumber(inputAdminRewards) && isNonZeroNumber(inputAdminDuration))) {
+                toast.info('Please add missing input.');
+                return;
+            }
+            if (parseFloat(inputAdminRewards) > parseFloat(userDetails2["rewardTokenBalance"])) {
+                toast.error("Not enough balance.");
+                return;
+            }
+            toast.dismiss();
+            let amount = web3.utils.toWei(inputAdminRewards);
+            let days = inputAdminDuration;
+            try {
+                toast.info('Please approve transaction (allowance)...', {position: 'top-left', autoClose: false});
+                await rewardTokenContract2.methods.approve(stakerContract2.options.address, amount.toString()).send({ from: accounts[0] });
+                toast.dismiss();
+                toast.info('Please approve transaction (add rewards)...', {position: 'top-left', autoClose: false});
+                await stakerContract2.methods.addRewards(amount.toString(), days).send({ from: accounts[0] });
+            } finally {
+                toast.dismiss();
+            }
+            
+            await refreshUserDetails();
+    }
 
     return (
         <>
@@ -102,6 +130,9 @@ export default function AdminPanel() {
                 </div>
                 <div className="button-stretch">
                     <br/><Button onClick={addRewards1} variant="secondary">Add MUT TO LP</Button><br/>
+                </div>
+                <div className="button-stretch">
+                    <br/><Button onClick={addRewards2} variant="secondary">Add FRG</Button><br/>
                 </div>
                 <br/>
             </Container>

@@ -3,6 +3,7 @@ import connectToWallet from "./getWeb3";
 
 import StakerContract from "./contracts/Staker.json";
 import StakerContract1 from "./contracts/Staker2.json";
+import StakerContract2 from "./contracts/Staker3.json";
 import ERC20ABI from "./ERC20ABI.json";
 import BlockchainContext from "./context/BlockchainContext.js";
 import DisplayContext from "./context/DisplayContext.js";
@@ -24,14 +25,18 @@ function App() {
   const [accounts, setAccounts] = useState(undefined);
   const [stakerContract, setStakerContract] = useState(undefined);
   const [stakerContract1, setStakerContract1] = useState(undefined);
+  const [stakerContract2, setStakerContract2] = useState(undefined);
   const [depositTokenContract, setDepositTokenContract] = useState(undefined);
   const [rewardTokenContract, setRewardTokenContract] = useState(undefined);
   const [depositTokenContract1, setDepositTokenContract1] = useState(undefined);
   const [rewardTokenContract1, setRewardTokenContract1] = useState(undefined);
+  const [depositTokenContract2, setDepositTokenContract2] = useState(undefined);
+  const [rewardTokenContract2, setRewardTokenContract2] = useState(undefined);
 
 
   const [userDetails, setUserDetails] = useState({});
   const [userDetails1, setUserDetails1] = useState({});
+  const [userDetails2, setUserDetails2] = useState({});
   const [owner, setOwner] = useState(undefined);
 
   const [isGlobalLoading, setIsGlobalLoading] = useState(true);
@@ -66,6 +71,7 @@ function App() {
       const networkId = await window.ethereum.request({ method: 'net_version' });
       const deployedNetwork = StakerContract.networks[networkId];
       const deployedNetwork1 = StakerContract1.networks[networkId];
+      const deployedNetwork2 = StakerContract2.networks[networkId];
       const instance = new web3.eth.Contract(
         StakerContract.abi,
         deployedNetwork && deployedNetwork.address,
@@ -73,6 +79,10 @@ function App() {
       const instance1 = new web3.eth.Contract(
         StakerContract1.abi,
         deployedNetwork1 && deployedNetwork1.address,
+      );
+      const instance2 = new web3.eth.Contract(
+        StakerContract2.abi,
+        deployedNetwork2 && deployedNetwork2.address,
       );
 
       const depositTokenAddr = await instance.methods.depositToken().call({ from: accounts[0] });
@@ -87,16 +97,27 @@ function App() {
       const rewardTokenAddr1 = await instance1.methods.rewardToken().call({ from: accounts[0] });
       const rewardContract1 = new web3.eth.Contract(ERC20ABI, rewardTokenAddr1);
 
+      const depositTokenAddr2 = await instance2.methods.depositToken().call({ from: accounts[0] });
+      const depositContract2 = new web3.eth.Contract(ERC20ABI, depositTokenAddr2);
+
+      const rewardTokenAddr2 = await instance2.methods.rewardToken().call({ from: accounts[0] });
+      const rewardContract2 = new web3.eth.Contract(ERC20ABI, rewardTokenAddr2);
+      
+
       setWeb3(web3);
       setOwner(await instance.methods.owner().call({ from: accounts[0] }));
       setOwner(await instance1.methods.owner().call({ from: accounts[0] }));
+      setOwner(await instance2.methods.owner().call({ from: accounts[0] }));
       setAccounts(accounts);
       setStakerContract(instance);
       setStakerContract1(instance1);
+      setStakerContract2(instance2);
       setDepositTokenContract(depositContract);
       setRewardTokenContract(rewardContract);
       setDepositTokenContract1(depositContract1);
       setRewardTokenContract1(rewardContract1);
+      setDepositTokenContract2(depositContract2);
+      setRewardTokenContract2(rewardContract2);
 
       window.ethereum.on('accountsChanged', function (_accounts) {
         if (_accounts.length === 0) {
@@ -142,11 +163,14 @@ function App() {
       && typeof rewardTokenContract !== 'undefined'
       && typeof stakerContract1 !== 'undefined'  
       && typeof depositTokenContract1 !== 'undefined'
-      && typeof rewardTokenContract1 !== 'undefined') {
+      && typeof rewardTokenContract1 !== 'undefined'
+      && typeof stakerContract2 !== 'undefined'  
+      && typeof depositTokenContract2 !== 'undefined'
+      && typeof rewardTokenContract2 !== 'undefined') {
         load();
       }   
 
-  }, [web3, accounts, stakerContract, stakerContract1, depositTokenContract, rewardTokenContract, depositTokenContract1, rewardTokenContract1]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [web3, accounts, stakerContract, stakerContract1,stakerContract2, depositTokenContract, rewardTokenContract, depositTokenContract1, rewardTokenContract1,depositTokenContract2, rewardTokenContract2]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
   async function refreshUserDetails() {
@@ -161,6 +185,11 @@ function App() {
     let rewardBalance1 = await rewardTokenContract1.methods.balanceOf(accounts[0]).call({ from: accounts[0] });
     let depSymbol1 = await depositTokenContract1.methods.symbol().call({ from: accounts[0] });
     let rewSymbol1 = await rewardTokenContract1.methods.symbol().call({ from: accounts[0] });
+    let res2 = await stakerContract2.methods.getFrontendView().call({ from: accounts[0] });
+    let depBalance2 = await depositTokenContract2.methods.balanceOf(accounts[0]).call({ from: accounts[0] });
+    let rewardBalance2 = await rewardTokenContract2.methods.balanceOf(accounts[0]).call({ from: accounts[0] });
+    let depSymbol2 = await depositTokenContract2.methods.symbol().call({ from: accounts[0] });
+    let rewSymbol2 = await rewardTokenContract2.methods.symbol().call({ from: accounts[0] });
  let parsed1 = {
   rewardPerDay1: (res1["_rewardPerSecond"]*24*60*60/(10**18))
   , daysLeft1: (res1["_secondsLeft"]/60/60/24)
@@ -172,6 +201,18 @@ function App() {
   , rewSymbol1: rewSymbol1 }
 
 setUserDetails1(parsed1);
+
+let parsed2 = {
+  rewardPerDay2: (res2["_rewardPerSecond"]*24*60*60/(10**18))
+  , daysLeft2: (res2["_secondsLeft"]/60/60/24)
+  , deposited2: web3.utils.fromWei(res2["_deposited"])
+  , pending2: web3.utils.fromWei(res2["_pending"])
+  , depositTokenBalance2: web3.utils.fromWei(depBalance2)
+  , rewardTokenBalance2: web3.utils.fromWei(rewardBalance2)
+  , depSymbol2: depSymbol2
+  , rewSymbol2: rewSymbol2 }
+
+setUserDetails2(parsed2);
 
     let parsed = {
       rewardPerDay: (res["_rewardPerSecond"]*24*60*60/(10**18))
@@ -227,8 +268,8 @@ setUserDetails1(parsed1);
 
   return (
     <div className="outerApp">
-      <BlockchainContext.Provider value={{web3, accounts, stakerContract, rewardTokenContract, depositTokenContract, stakerContract1, rewardTokenContract1, depositTokenContract1}}>
-      <DisplayContext.Provider value={{userDetails, refreshUserDetails, onInputNumberChange, isNonZeroNumber, toast, userDetails1}}>
+      <BlockchainContext.Provider value={{web3, accounts, stakerContract, rewardTokenContract, depositTokenContract, stakerContract1,stakerContract2 , rewardTokenContract1, depositTokenContract1,rewardTokenContract2, depositTokenContract2}}>
+      <DisplayContext.Provider value={{userDetails, refreshUserDetails, onInputNumberChange, isNonZeroNumber, toast, userDetails1, userDetails2}}>
         <NavBar />
         <div className="App">
           {isGlobalLoading? <LoadingView/> : <MainViewOrConnectView/> }
