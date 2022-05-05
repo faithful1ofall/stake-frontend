@@ -107,12 +107,15 @@ export default function AdminPanel() {
         <>
             <Container className="square inner-container">
                 <br/>
-                Admin :: Add {userDetails["rewSymbol"]} Rewards
+                Admin :: Add {userDetails["rewSymbol"]} and {userDetails2["rewSymbol2"]} Rewards
                 <hr/>
 
                 <br/>Amount<br/>
                 <div className="label-above-button">
                     Available {userDetails["rewSymbol"]} balance to transfer: {userDetails["rewardTokenBalance"]}
+                </div>
+                <div className="label-above-button">
+                    Available {userDetails2["rewSymbol2"]} balance to transfer: {userDetails2["rewardTokenBalance2"]}
                 </div>
                 <div className="input-button-container">
                     <Form.Control key="a1" placeholder="Amount" value={inputAdminRewards} onChange={(e) => {onInputNumberChange(e, setInputAdminRewards)}}/>
