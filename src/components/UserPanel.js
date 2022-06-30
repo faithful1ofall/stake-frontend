@@ -279,7 +279,7 @@ export default function UserPanel() {
         <>
         <div className="two-line-label">
             <div>Staking reward period finished</div>
-            <div>Please stake back later for the next phase starting 1st of may higher rewards upto 3000% APY</div>
+            <div>Please stake back later for the next phase starting 1st of july higher rewards upto 3000% APY</div>
         </div><hr/>
         </>
     );
@@ -385,20 +385,20 @@ export default function UserPanel() {
                 </div>
                 <div className="input-button-container">
                     <div>
-                        <Form.Control disabled placeholder="Amount" value={inputUnstake} onChange={(e) => {onInputNumberChange(e, setInputUnstake)}}/>
+                        <Form.Control  placeholder="Amount" value={inputUnstake} onChange={(e) => {onInputNumberChange(e, setInputUnstake)}}/>
                     </div>
                     <div>
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button" disabled onClick={withdraw} >Unstake</Button>
+                            <Button type="button"  onClick={withdraw} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
 
                
                 <div className="button-stretch">
-                    <Button type="button" disabled onClick={claim} >Claim rewards</Button>
+                    <Button type="button"  onClick={claim} >Claim rewards</Button>
                 </div>
                 <br/></Container> 
                 </Row>
@@ -436,20 +436,20 @@ export default function UserPanel() {
                 </div>
                 <div className="input-button-container">
                     <div>
-                        <Form.Control disabled placeholder="Amount" value={inputUnstake1} onChange={(e) => {onInputNumberChange(e, setInputUnstake1)}}/>
+                        <Form.Control  placeholder="Amount" value={inputUnstake1} onChange={(e) => {onInputNumberChange(e, setInputUnstake1)}}/>
                     </div>
                     <div>
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails1["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button" disabled  onClick={withdraw1} >Unstake</Button>
+                            <Button type="button"  onClick={withdraw1} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
 
                
                 <div className="button-stretch">
-                    <Button type="button" disabled onClick={claim1} >Claim rewards for LP</Button>
+                    <Button type="button"  onClick={claim1} >Claim rewards for LP</Button>
                 </div>
                 <div className="button-stretch">
                     <br/><Button type="button" onClick={addTokenFunction} >Add MUT to Metamask</Button><br/>
@@ -489,20 +489,20 @@ export default function UserPanel() {
                 </div>
                 <div className="input-button-container">
                     <div>
-                        <Form.Control disabled placeholder="Amount" value={inputUnstake2} onChange={(e) => {onInputNumberChange(e, setInputUnstake2)}}/>
+                        <Form.Control  placeholder="Amount" value={inputUnstake2} onChange={(e) => {onInputNumberChange(e, setInputUnstake2)}}/>
                     </div>
                     <div>
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails2["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button" disabled onClick={withdraw2} >Unstake</Button>
+                            <Button type="button"  onClick={withdraw2} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
 
                
                 <div className="button-stretch">
-                    <Button type="button" disabled onClick={claim2} >Claim rewards</Button>
+                    <Button type="button"  onClick={claim2} >Claim rewards</Button>
                 </div>
                 <br/>
                 </Container></Row>
