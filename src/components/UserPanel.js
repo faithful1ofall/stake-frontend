@@ -279,7 +279,7 @@ export default function UserPanel() {
         <>
         <div className="two-line-label">
             <div>Staking reward period finished</div>
-            <div>Please stake back later for the next phase starting 1st of july higher rewards upto 3000% APY</div>
+            <div>Please stake back later for the next phase starting 1st of july higher rewards upto 800% APY</div>
         </div><hr/>
         </>
     );
@@ -358,7 +358,7 @@ export default function UserPanel() {
                 <div className="two-line-label">
             <div>Stake MUT Earn MUT</div>
             </div>
-            <CardKeyValue label="Estimated Apr in %"  value={  450.23+"%"} ></CardKeyValue> 
+            <CardKeyValue label="Estimated Apr in %"  value={  250.23+"%"} ></CardKeyValue> 
                 {isNonZeroNumber(userDetails["rewardPerDay"])? <RewardsPhaseActive /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="button-stretch">
@@ -391,14 +391,14 @@ export default function UserPanel() {
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button"  onClick={withdraw} >Unstake</Button>
+                            <Button type="button" disabled  onClick={withdraw} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
 
                
                 <div className="button-stretch">
-                    <Button type="button"  onClick={claim} >Claim rewards</Button>
+                    <Button type="button" disabled onClick={claim} >Claim rewards</Button>
                 </div>
                 <br/></Container> 
                 </Row>
@@ -409,7 +409,7 @@ export default function UserPanel() {
                 <div className="two-line-label">
             <div>Stake MUT-CET LP Earn MUT</div>
             </div>
-            <CardKeyValue label="Estimated Apr in %"  value={  1200.63+"%"} ></CardKeyValue> 
+            <CardKeyValue label="Estimated Apr in %"  value={  800.63+"%"} ></CardKeyValue> 
                 {isNonZeroNumber(userDetails1["rewardPerDay1"])? <RewardsPhaseActive1 /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="button-stretch">
@@ -442,14 +442,14 @@ export default function UserPanel() {
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails1["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button"  onClick={withdraw1} >Unstake</Button>
+                            <Button type="button" disabled onClick={withdraw1} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
 
                
                 <div className="button-stretch">
-                    <Button type="button"  onClick={claim1} >Claim rewards for LP</Button>
+                    <Button type="button" disabled onClick={claim1} >Claim rewards for LP</Button>
                 </div>
                 <div className="button-stretch">
                     <br/><Button type="button" onClick={addTokenFunction} >Add MUT to Metamask</Button><br/>
@@ -460,9 +460,9 @@ export default function UserPanel() {
                 <Row> <Container  className="square inner-container" >
                 <br/>
                 <div className="two-line-label">
-            <div>Stake MUT Earn FRG </div>
+            <div>Stake MUT/USDT Earn MUT (coming soon) </div>
             </div>
-            <CardKeyValue label="Estimated Apr in %"  value={  3000 +"%"} ></CardKeyValue> 
+            <CardKeyValue label="Estimated Apr in %"  value={  100 +"%"} ></CardKeyValue> 
                 {isNonZeroNumber(userDetails2["rewardPerDay2"])? <RewardsPhaseActive2 /> : <RewardsPhaseFinished/>}
                 <br/><br/>
                 <div className="button-stretch">
@@ -479,7 +479,7 @@ export default function UserPanel() {
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails2["pending"] > 0 ? <Tooltip >The Actual APR will be varied with the TVL and the time to staking</Tooltip> : <></>}>
-                            <Button  onClick={deposit2} >Stake</Button>
+                            <Button disabled onClick={deposit2} >Stake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
@@ -495,14 +495,14 @@ export default function UserPanel() {
                         <OverlayTrigger
                         placement="right"
                         overlay={userDetails2["pending"] > 0 ? <Tooltip ></Tooltip> : <></>}>
-                            <Button type="button"  onClick={withdraw2} >Unstake</Button>
+                            <Button type="button" disabled  onClick={withdraw2} >Unstake</Button>
                         </OverlayTrigger>
                     </div>
                 </div><br/>
 
                
                 <div className="button-stretch">
-                    <Button type="button"  onClick={claim2} >Claim rewards</Button>
+                    <Button type="button" disabled onClick={claim2} >Claim rewards</Button>
                 </div>
                 <br/>
                 </Container></Row>
