@@ -28,7 +28,7 @@ export default function TimeLeftField() {
                 <div>
                 Estimate End Time
                 </div> 
-                <div className="time"> 2022-06-30       
+                <div className="time"> 2022-08-31       
               </div>
             </div>
           </>

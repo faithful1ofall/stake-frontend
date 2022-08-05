@@ -279,7 +279,7 @@ export default function UserPanel() {
         <>
         <div className="two-line-label">
             <div>Staking reward period finished</div>
-            <div>Please stake back later for the next phase starting 1st of july higher rewards upto 800% APY</div>
+            <div>Please stake back later for the next phase starting 1st of september higher rewards upto 800% APY</div>
         </div><hr/>
         </>
     );
